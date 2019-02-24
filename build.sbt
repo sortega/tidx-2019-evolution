@@ -85,8 +85,10 @@ lazy val root = (project in file("."))
     ),
     name := "evolution"
   )
-  .aggregate(producer)
+  .aggregate(producer, productStats, recommender)
 
 scalafmtOnCompile in ThisBuild := true
 
 lazy val producer = project
+lazy val productStats = project.in(file("product-stats"))
+lazy val recommender = project.in(file("recommender"))
