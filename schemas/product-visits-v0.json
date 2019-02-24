@@ -1,0 +1,5 @@
+{ "product_id" : "prod1", "user_id" : { "string": "sortega" }, "timestamp" : 1551020240000, "referral_token": { "null": null } }
+{ "product_id" : "prod1", "user_id" : { "string": "iondo" },   "timestamp" : 1551070640000, "referral_token": { "null": null } }
+{ "product_id" : "prod2", "user_id" : { "string": "iondo" },   "timestamp" : 1551125420000, "referral_token": { "string": "Z293Z" } }
+{ "product_id" : "prod2", "user_id" : { "string": "jdoe" },    "timestamp" : 1551268800000, "referral_token": { "null": null } }
+{ "product_id" : "prod2", "user_id" : { "null": null },        "timestamp" : 1551267000000, "referral_token": { "string": "Y29tc" } }

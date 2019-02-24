@@ -1,0 +1,41 @@
+{
+   "type": "record",
+   "namespace": "com.tidx",
+   "name": "ProductVisit",
+   "fields":[
+      {
+         "name": "product_id",
+         "type": "string",
+         "doc":  "Identifier of the visited product"
+      },
+      {
+         "name": "user_id",
+         "type": ["null", "string"],
+         "default": null,
+         "doc":  "Identifier of the visiting user"
+      },
+      {
+         "name": "timestamp",
+         "type": "long",
+         "logical-type": "timestamp-millis",
+         "default": 0,
+         "doc": "Epoch time of the visit"
+      },
+      {
+         "name": "location",
+         "type": [
+           "null",
+           {
+             "type": "record",
+             "name": "LatLon",
+             "fields": [
+               { "name": "lat", "type": "float" },
+               { "name": "lon", "type": "float" }
+             ]
+           }
+         ],
+         "default": null,
+         "doc": "Where the user was when he visited the product (if we have permissions to know it)"
+      }
+   ]
+}

@@ -1,0 +1,5 @@
+{ "product_id" : "prod1", "user_id" : { "string": "sortega" }, "timestamp" : 1551020240000, "location": { "com.tidx.LatLon": { "lat": 41.394, "lon": 2.078 } } }
+{ "product_id" : "prod1", "user_id" : { "string": "iondo" },   "timestamp" : 1551070640000, "location": { "null": null } }
+{ "product_id" : "prod2", "user_id" : { "string": "iondo" },   "timestamp" : 1551125420000, "location": { "null": null } }
+{ "product_id" : "prod2", "user_id" : { "string": "jdoe" },    "timestamp" : 1551268800000, "location": { "com.tidx.LatLon": { "lat": 40.437, "lon": -3.749 } } }
+{ "product_id" : "prod2", "user_id" : { "null": null },        "timestamp" : 1551267000000, "location": { "null": null } }

@@ -1,0 +1,28 @@
+{
+   "type": "record",
+   "namespace": "com.tidx",
+   "name": "ProductVisit",
+   "fields": [
+      {
+         "name": "product_id",
+         "type": "string",
+         "doc":  "Identifier of the visited product"
+      },
+      {
+         "name": "user_id",
+         "type": "string",
+         "doc":  "Identifier of the visiting user"
+      },
+      {
+         "name": "timestamp",
+         "type": "long",
+         "logical-type": "timestamp-millis",
+         "doc": "Epoch time of the visit"
+      },
+      {
+         "name": "referral_token",
+         "type": "string",
+         "doc": "Code that identifies a third party sending us customers"
+      }
+   ]
+}
