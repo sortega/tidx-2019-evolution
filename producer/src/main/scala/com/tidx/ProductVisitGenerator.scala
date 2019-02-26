@@ -36,6 +36,7 @@ object ProductVisitGenerator extends CliApp {
 //        LatLon.newBuilder
 //          .setLat(Random.nextFloat)
 //          .setLon(Random.nextFloat)
-//          .build)
+//          .build
+//      )
       .build()
 }

@@ -22,8 +22,10 @@ object Recommender extends CliApp {
     }
 
     def updateStats(visit: ProductVisit): Unit = {
-      val userId      = visit.getUserId.toString
-      val userProfile = userProfiles(userId).update(visit.getProductId.toString, n)
+      val userId = visit.getUserId.toString
+      val userProfile = userProfiles(userId)
+        .update(visit.getProductId.toString, n)
+//        .update(Option(visit.getLocation))
       userProfiles += (userId -> userProfile)
       println(s"User $userId updated profile: $userProfile")
     }

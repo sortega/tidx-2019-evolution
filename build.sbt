@@ -93,3 +93,5 @@ lazy val commons = project
 lazy val producer = project.dependsOn(commons)
 lazy val productStats = project.in(file("product-stats")).dependsOn(commons)
 lazy val recommender = project.in(file("recommender")).dependsOn(commons)
+
+addCommandAlias("regen", ";reload;compile")
