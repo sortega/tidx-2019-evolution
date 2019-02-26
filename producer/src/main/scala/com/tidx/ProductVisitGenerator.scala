@@ -1,47 +1,30 @@
 package com.tidx
 
-import scala.collection.JavaConverters._
 import scala.concurrent.duration._
 import scala.util.Random
 import scalaz.Scalaz._
 
-import io.confluent.kafka.serializers.KafkaAvroSerializer
+import com.tidx.commons.CliApp
+import com.tidx.commons.KafkaUtils.withKafkaProducer
 import org.apache.kafka.clients.producer._
-import org.apache.kafka.common.serialization.ByteArraySerializer
 
-object ProductVisitGenerator extends App {
-  val interval = 5.seconds
-  val topic    = "product-visit"
-  val key      = Array.empty[Byte]
+object ProductVisitGenerator extends CliApp {
 
-  withKafkaProducer { producer =>
-    println(s"Producing a random product visit every $interval")
-    while (!shouldStop()) {
-      val value = randomProductVisit()
-      println(s"Emitting $value")
-      producer.send(new ProducerRecord[Array[Byte], ProductVisit](topic, key, value))
-      Thread.sleep(interval.toMillis)
+  override def run(): Unit = {
+    val interval = 3.seconds
+    val topic    = "product-visit"
+    val key      = Array.empty[Byte]
+
+    withKafkaProducer[ProductVisit] { producer =>
+      println(s"Producing a random product visit every $interval")
+      while (!shouldStop) {
+        val value = randomProductVisit()
+        println(s"Emitting $value")
+        producer.send(new ProducerRecord(topic, key, value))
+        Thread.sleep(interval.toMillis)
+      }
     }
   }
-
-  private def withKafkaProducer(block: KafkaProducer[Array[Byte], ProductVisit] => Unit): Unit = {
-    val kafkaConfig = Map[String, AnyRef](
-      "bootstrap.servers"   -> "127.0.0.1:9092",
-      "schema.registry.url" -> "http://127.0.0.1:8081",
-      "acks"                -> "all",
-      "retries"             -> "10",
-      "key.serializer"      -> classOf[ByteArraySerializer],
-      "value.serializer"    -> classOf[KafkaAvroSerializer]
-    )
-    val producer = new KafkaProducer[Array[Byte], ProductVisit](kafkaConfig.asJava)
-    try block(producer)
-    finally {
-      producer.close()
-    }
-  }
-
-  // Stop producing events when the standard output is closed
-  private def shouldStop(): Boolean = System.in.read(Array.empty) == -1
 
   private def randomProductVisit(): ProductVisit =
     ProductVisit.newBuilder
